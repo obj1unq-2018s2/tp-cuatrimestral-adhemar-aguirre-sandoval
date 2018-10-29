@@ -17,6 +17,9 @@ class Minions {
 	
 	method defender(campeon){
 	if(campeon.bloqueos()==0)
-		campeon.puntosDeDanio(campeon.puntosDeDanio() + self.puntosDeAtaque())
+		{campeon.puntosDeDanio(campeon.puntosDeDanio() + self.puntosDeAtaque())}
+		else {
+			campeon.bloqueos(campeon.bloqueos() -1)
+		}
 	}
 }

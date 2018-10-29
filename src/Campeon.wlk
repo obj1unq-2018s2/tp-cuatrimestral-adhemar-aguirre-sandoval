@@ -36,3 +36,84 @@ class Campeon {
 	}
 
 }
+
+
+// este es el otro camino que intentamos pero no salio
+
+/* class Personaje {
+
+	var puntosDeVida
+	var puntosDeDanio = 0
+
+	method atacar(personaje, num) {
+	}
+
+	method defender(num) {
+	}
+
+	method recibirDanio(num) {
+	}
+
+}
+
+class Campeon inherits Personaje {
+
+	var property puntosDeAtaque
+	var bloqueos = 0
+	var items = []
+
+	method equipar(item) {
+		items.add(item)
+	}
+
+	method desequipar(item) {
+		items.remove(item)
+	}
+
+	override method atacar(minion, puntosdeAtaque) {
+		minion.defender(self.puntosDeAtaque())
+	}
+
+	override method defender(num) {
+		if (self.bloqueos() > 0) {
+			bloqueos -= 1
+			}
+			else {
+				self.recibirDanio(num)
+		}
+	}
+
+	override method recibirDanio(num) {
+		puntosDeDanio = puntosDeDanio + num
+	}
+
+	method bloqueos() {
+		return bloqueos
+	}
+
+}
+
+// oleada = minions
+class Minions inherits Personaje {
+
+	var cantidad = 1
+	var plus = 0
+
+	override method atacar(campeon, oleada) {
+		campeon.defender(oleada)
+	}
+
+	override method defender(campeon, oleada) {
+		self.recibirDanio(campeon.puntosDeAtaque())
+		self.atacar(campeon, oleada)
+	}
+
+	override method recibirDanio(numero) {
+		puntosDeDanio = puntosDeDanio + numero
+	}
+
+	method oleada() {
+		return cantidad + plus
+	}
+
+} */
