@@ -1,5 +1,6 @@
 import Campeon.*
-import objeto.*
+import Batalla.*
+
 class Minions {
 	var property puntosDeVida = 0
 	var property puntosDeDanio = 0
@@ -18,8 +19,6 @@ class Minions {
 	method defender(campeon){
 	if(campeon.bloqueos()==0)
 		{campeon.puntosDeDanio(campeon.puntosDeDanio() + self.puntosDeAtaque())}
-		else {
-			campeon.bloqueos(campeon.bloqueos() -1)
-		}
+	else{campeon.bloqueos(campeon.bloqueos() -1 )}
 	}
 }
