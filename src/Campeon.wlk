@@ -1,17 +1,21 @@
 import Minions.*
-import Batalla.*
+import items.*
 
 class Campeon {
-
-	const vidaTotal = 0
-	var property puntosDeAtaque = 0
+	
+	const vidaBase = 0
+	var property puntosDeAtaqueBase = 0
 	var property puntosDeDanio = 0
 	var property items = []
 	var property bloqueos = 0
 
+		
+	
+	method vidaBase()= vidaBase
+	
 	method equiparItem(item) {
 		items.add(item)
-		//item.efectoEquipar(self)
+		item.efectoEquipar(self)
 	}
 
 	method desequiparItem(item) {
@@ -22,32 +26,39 @@ class Campeon {
 	}
 	
 	method vidaTotal(){	
-		var aux 
-		if (not (items.isEmpty())){
-	   aux = items.map({item=>item.puntosDeVida()}).sum() + vidaTotal	
-		}
-		else {
-			aux = vidaTotal
-		}
-		 return aux
+	   return items.map({item=>item.puntosDeVida(self)}).sum() + vidaBase	
 		}
 		
- method 
-
-			
+ 	method puntosDeAtaqueTotal(){
+ 		return items.map({item=>item.puntosDeAtaque(self)}).sum() + puntosDeAtaqueBase
+	}		
+ 
+ //method puntosDeDanioTotal(){
+ //	var aux 
+	//	if (not (items.isEmpty())){
+		//	aux= items.map({item=>item.efectoEquipar()}).sum() + puntosDeDanioBase
+	//	}
+ 	//	else{
+ 		//	aux= puntosDeDanioBase
+ 	//	}
+ 		//return aux
+ 		
+//}		
 	
 	method muereCampeon() {
 		return self.vidaTotal() <= self.puntosDeDanio()
 	}
-	
-	/*method atacar(minion){
-		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaque()) 
-		self.puntosDeDanio(self.puntosDeDanio() + minion.puntosDeAtaque())
+
+	method atacar(minion){
+		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaqueTotal()) 
+		minion.defender(self)
+		//self.puntosDeDanio(self.puntosDeDanio() + minion.puntosDeAtaque())
 	}
+	
 	
 	method luchar(minion) {
 		if (not self.muereCampeon() and not minion.muereMinions() ){
 			self.atacar(minion)
 		}
-	}*/
-
+	}
+}
