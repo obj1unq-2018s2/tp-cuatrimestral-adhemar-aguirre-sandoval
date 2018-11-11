@@ -33,32 +33,23 @@ class Campeon {
  		return items.map({item=>item.puntosDeAtaque(self)}).sum() + puntosDeAtaqueBase
 	}		
  
- //method puntosDeDanioTotal(){
- //	var aux 
-	//	if (not (items.isEmpty())){
-		//	aux= items.map({item=>item.efectoEquipar()}).sum() + puntosDeDanioBase
-	//	}
- 	//	else{
- 		//	aux= puntosDeDanioBase
- 	//	}
- 		//return aux
- 		
-//}		
+	
 	
 	method muereCampeon() {
 		return self.vidaTotal() <= self.puntosDeDanio()
 	}
 
 	method atacar(minion){
-		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaqueTotal()) 
-		minion.defender(self)
-		//self.puntosDeDanio(self.puntosDeDanio() + minion.puntosDeAtaque())
-	}
-	
+		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaqueTotal())
+			
+		
+}
 	
 	method luchar(minion) {
-		if (not self.muereCampeon() and not minion.muereMinions() ){
+		if (not self.muereCampeon() and not minion.estaMuerto()){
+			minion.defender(self)
 			self.atacar(minion)
-		}
+			minion.reciboDanio(minion.puntosDeDanio())
+			 }else{not self.muereCampeon() and minion.estaMuerto() self.atacar(minion)}	
 	}
 }

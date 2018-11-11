@@ -15,7 +15,9 @@ class AnilloDeDoran  {
 	}
 	
 	method efectoDesequipar(campeon){
-		 campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
+		
+		if( campeon.puntosDeDanio() - 10 < 0) {campeon.puntosDeDanio(0)}
+			else{campeon.puntosDeDanio(campeon.puntosDeDanio()-10)}
 	}
 	
 

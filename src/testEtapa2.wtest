@@ -1,0 +1,37 @@
+import Campeon.*
+import items.*
+import Minions.*
+
+describe "Tests de la parte 2 del TP"{
+	var m = new Minions(cantidad=10,plus=25)
+	var jinx = new Campeon(vidaBase=50,puntosDeAtaqueBase=15) // creo al campeon
+ 	var ani = new AnilloDeDoran()
+ 	var tomo = new TomoAmplificador()
+ 	
+ 	test "equipa anillo, tomo y pelean 3 veces"{
+ 		jinx.equiparItem(ani)
+ 		jinx.equiparItem(tomo)
+		jinx.luchar(m)
+		jinx.luchar(m)
+		jinx.luchar(m)
+ 		assert.equals(jinx.items(),[ani,tomo])
+		assert.equals(jinx.bloqueos(),1)
+		assert.equals(jinx.vidaTotal(),111.25)
+		assert.equals(jinx.puntosDeDanio(),5)
+		assert.equals(jinx.puntosDeAtaqueTotal(),30.25)
+		assert.equals(true,m.muereMinions())
+ 	}
+ 	test"se muere el campeon tras desequiparse los items"{
+ 		jinx.equiparItem(ani)
+ 		jinx.equiparItem(tomo)
+		jinx.luchar(m)
+		jinx.luchar(m)
+		jinx.luchar(m)
+		jinx.desequiparItem(ani)
+		jinx.desequiparItem(tomo)
+		jinx.equiparItem(tomo)
+		jinx.desequiparItem(tomo)
+		assert.equals(true,m.muereMinions())
+		assert.equals(true,jinx.muereCampeon())
+ 	}	
+ }
