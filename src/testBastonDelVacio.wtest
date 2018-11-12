@@ -1,0 +1,29 @@
+import Campeon.*
+import items.*
+import Minions.*
+
+describe "Test Baston" {
+
+	var sombrero = new SombreroDeRabadon()
+	var ani = new AnilloDeDoran()
+	var anillo2 = new AnilloDeDoran()
+	var jinx = new Campeon(vidaBase = 50, puntosDeAtaqueBase = 15, cantDinero = 800)
+	var pocion = new PocionDeVida()
+	var baston = new BastonDelVacio()
+
+	fixture {
+		baston.cargarMateriales(sombrero)
+		baston.cargarMateriales(pocion)
+	}
+
+	test "equipar baston" {
+		jinx.comprar(ani)
+		jinx.comprar(anillo2)
+		jinx.comprar(baston)
+		jinx.activarHabilidad(baston)
+		assert.equals(jinx.puntosDeDanio(), 0)
+		assert.equals(jinx.cantDinero(), 500)
+	}
+
+}
+
