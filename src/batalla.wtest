@@ -41,8 +41,8 @@ describe "Tests de la parte 1 del TP"{
 	test " minions atacan 2 veces y campeon se queda sin bloqueos "{
 		jinx.equiparItem(ani)
 		jinx.equiparItem(tomo)
-		jinx.luchar(m)
-		jinx.luchar(m)
+		m.defender(jinx)
+		m.defender(jinx)
 		assert.equals(jinx.bloqueos(),0)
 	}
 	

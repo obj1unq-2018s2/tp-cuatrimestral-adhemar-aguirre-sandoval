@@ -69,6 +69,18 @@ class Campeon {
 			self.atacar(minion)
 		}
 	}
-
+	
+		method atacarEjercito(ejercito){
+		ejercito.recibeAtaque(self.puntosDeAtaqueTotal())
+	}
+	
+	method lucharEjercito(ejercito){
+		if(not self.muereCampeon() and not ejercito.ejercitoMuerto()){
+			ejercito.defenderse(self)
+			self.atacarEjercito(ejercito)}	
+		else{not self.muereCampeon() and ejercito.ejercitoMuerto() self.atacarEjercito(ejercito)}
+	}
 }
+
+
 

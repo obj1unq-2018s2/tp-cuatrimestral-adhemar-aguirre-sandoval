@@ -1,0 +1,21 @@
+import Campeon.*
+import items.*
+import Minions.*
+import ejercitoMinion.*
+
+describe "Tests Individual Ejercito de Minions "{
+	
+		var jinx = new Campeon(vidaBase=50,puntosDeAtaqueBase=20,cantDinero=300)
+		var oleada1 = new Minions(cantidad=20,plus=5)
+		var oleada2 = new Minions(cantidad=10,plus=15)
+		var escuadron1 = new EjercitoDeMinions()
+		
+		test "Creo ejercito y luchan con el campeon"{
+		escuadron1.reclutarOleada(oleada1)
+		escuadron1.reclutarOleada(oleada2)
+		jinx.lucharEjercito(escuadron1)
+		assert.equals(true,escuadron1.ejercitoMuerto())
+		assert.equals(true,jinx.muereCampeon())
+		
+	}
+}

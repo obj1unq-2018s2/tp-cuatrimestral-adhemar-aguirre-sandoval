@@ -23,11 +23,10 @@ class Minions {
 		
 	}
 	method reciboDanio(num){//SEGUNDA PARTE
-	if(not self.estaMuerto() and cantidad - num < 0 )
+	if(cantidad - num <= 0 )
 		{cantidad = 0}
-			else{(not self.estaMuerto() and cantidad - num > 0 ) cantidad = cantidad - num}
-		}
-			
+			else{ cantidad = cantidad - num}
+	}		
 	
 	method estaMuerto(){//SEGUNDA PARTE
 		return cantidad == 0
