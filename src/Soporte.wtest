@@ -1,0 +1,55 @@
+import Minions.*
+import Campeon.*
+import items.*
+import Soporte.*
+
+
+
+
+describe "test del soporte"{
+	var draven = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
+	var maokai = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
+	var janna = new Soporte(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 100, vinculado = null)
+	var olita = new Minions(cantidad = 100, plus = 0)
+	var po = new PocionDeVida()
+	var tomito = new TomoAmplificador()
+	fixture {
+		janna.vincular(draven)
+		draven.luchar(olita)
+		janna.luchar(olita)
+		janna.desvincular(draven)
+		janna.vincular(maokai)
+		maokai.luchar(olita)
+		janna.luchar(olita)
+		maokai.comprar(tomito)
+		janna.comprar(po)
+	}
+	test "oleada esta muerta"{
+		assert.that(olita.muereMinions())
+	}
+	
+	test "draven recibe 90 puntos de danio"{
+		assert.equals(draven.puntosDeDanio(),90)
+	}
+	
+	test "maokai recibe 40 puntos de danio"{
+		assert.equals(maokai.puntosDeDanio(),40)
+	}
+	
+	test"dinero de maokai "{
+		assert.equals(maokai.cantDinero(), 525)
+	}
+	
+	 test" dinero de janna"{
+		assert.equals(janna.cantDinero(),100)
+	}
+	
+	 test " janna tiene una pocion de vida"{
+		assert.equals(janna.invetario().contains(po))
+	}
+	
+	test "janna tiene un tomo amplificador"{
+      assert.equals(janna.invetario().contains(tomito))
+		
+	}
+}

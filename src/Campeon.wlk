@@ -11,6 +11,16 @@ class Campeon {
 	var property cantDinero = 0
 
 	method vidaBase() = vidaBase
+	
+	method invetario() = items
+	
+	method reducirDanio(cant){
+		if(puntosDeDanio.between(0,cant) ){
+		 puntosDeDanio= 0
+		} else {
+			puntosDeDanio = puntosDeDanio - cant
+		}
+	}
 
 	method comprar(item) {
 		if (cantDinero >= item.precio()) {
@@ -56,8 +66,17 @@ class Campeon {
 
 	method atacar(minion) {
 		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaqueTotal())
-		cantDinero = cantDinero + (self.puntosDeAtaqueTotal() - minion.cantidad() )
+		self.dineroObtenido(minion)
 	}
+	
+	method dineroObtenido(minion){
+		if(self.puntosDeAtaqueTotal() > minion.cantidad()){
+			cantDinero = cantDinero + minion.cantidad()
+		} else {
+			cantDinero = cantDinero + self.puntosDeAtaqueTotal()
+		}
+	}
+	
 
 	method luchar(minion) {
 		if (not self.muereCampeon() and not minion.estaMuerto()) {
