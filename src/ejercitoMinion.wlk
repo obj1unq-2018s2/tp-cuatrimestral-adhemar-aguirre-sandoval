@@ -2,26 +2,39 @@ import Minions.*
 import Campeon.*
 import items.*
 
+class EjercitoDeMinions {
 
-class EjercitoDeMinions  {
-	var property ejercito =[]
-	
-	
-	method reclutarOleada(minion){
+	var property ejercito = []
+
+	method reclutarOleada(minion) {
 		ejercito.add(minion)
 	}
-	
-	method ejercitoMuerto(){
-		return ejercito.all{oleada=> oleada.estaMuerto()}
+
+	method ejercitoMuerto() {
+		return ejercito.all{ oleada => oleada.estaMuerto() }
 	}
-	method recibeAtaque(num){
-		ejercito.forEach{oleada=>oleada.reciboDanio(num)}
+
+	method recibeAtaque(num) {
+		ejercito.forEach{ oleada => oleada.reciboDanio(num)}
 	}
-	method ataqueTotal(){
-		return ejercito.sum{oleada=>oleada.puntosDeAtaque()}
+
+	method ataqueTotal() {
+		return ejercito.sum{ oleada => oleada.puntosDeAtaque() }
 	}
-	method defenderse(campeon){
-		if(campeon.bloqueos() == 0  ) {campeon.puntosDeDanio(campeon.puntosDeDanio() + self.ataqueTotal())}
-			else{campeon.bloqueos(campeon.bloqueos() -1)}
-	}	
+
+	method defenderse(campeon) {
+		if (campeon.bloqueos() == 0) {
+			campeon.puntosDeDanio(campeon.puntosDeDanio() + self.ataqueTotal())
+		} else {
+			campeon.bloqueos(campeon.bloqueos() - 1)
+		}
+	}
+
+	method obtenerDineroOleada(campeon) {
+		return ejercito.map({oleada => oleada.obtenerDineroMinion(campeon)}).sum()+campeon.cantDinero()
+	}
+
 }
+
+
+	

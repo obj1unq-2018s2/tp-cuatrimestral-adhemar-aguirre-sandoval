@@ -2,100 +2,104 @@ import Campeon.*
 import items.*
 import Minions.*
 
-describe "Tests de la parte 1 del TP"{
-	var m = new Minions(cantidad=10,plus=25)
-	var jinx = new Campeon(vidaBase=50,puntosDeAtaqueBase=15) // creo al campeon
- 	var ani = new AnilloDeDoran()
- 	var tomo = new TomoAmplificador()
- 	
- 	// se sigue paso a paso los puntos de los test del tp
- 	
- 	test "equipa anilloDeDoran "{
- 	
-	jinx.equiparItem(ani)
-	assert.equals(jinx.items(),[ani])
-	}
-	
-	test "vidaTotal = 110, puntosDeDanio = 5 y puntosDeAtaqueTotal = 30"{
+describe "Tests de la parte 1 del TP" {
+
+	var m = new Minions(cantidad = 10, plus = 25)
+	var jinx = new Campeon(vidaBase = 50, puntosDeAtaqueBase = 15) // creo al campeon
+	var ani = new AnilloDeDoran()
+	var tomo = new TomoAmplificador()
+
+	// se sigue paso a paso los puntos de los test del tp
+	fixture {
 		jinx.equiparItem(ani)
-		assert.equals(jinx.vidaTotal(),110)
-		assert.equals(jinx.puntosDeDanio(),5)
-		assert.equals(jinx.puntosDeAtaqueTotal(),30)
 	}
-	
-	test "Equipar Tomo y anillo"{
-		jinx.equiparItem(ani)
+
+	test "equipa anilloDeDoran " {
+		
+		assert.equals(jinx.items(), [ ani ])
+	}
+
+	test "vidaTotal = 110, puntosDeDanio = 5 y puntosDeAtaqueTotal = 30" {
+		
+		assert.equals(jinx.vidaTotal(), 110)
+		assert.equals(jinx.puntosDeDanio(), 5)
+		assert.equals(jinx.puntosDeAtaqueTotal(), 30)
+	}
+
+	test "Equipar Tomo y anillo" {
 		jinx.equiparItem(tomo)
-		assert.equals(jinx.items(),[ani,tomo])
+		assert.equals(jinx.items(), [ ani, tomo ])
 	}
-	
-	test "bloqueo = 2, daño = 5, vida = 111.25, ataque = 30.25"{ 
-		jinx.equiparItem(ani)
+
+	test "bloqueo = 2, daño = 5, vida = 111.25, ataque = 30.25" {
+		
 		jinx.equiparItem(tomo)
-		assert.equals(jinx.bloqueos(),2)
-		assert.equals(jinx.vidaTotal(),111.25)
-		assert.equals(jinx.puntosDeDanio(),5)
-		assert.equals(jinx.puntosDeAtaqueTotal(),30.25)
+		assert.equals(jinx.bloqueos(), 2)
+		assert.equals(jinx.vidaTotal(), 111.25)
+		assert.equals(jinx.puntosDeDanio(), 5)
+		assert.equals(jinx.puntosDeAtaqueTotal(), 30.25)
 	}
+
+	test " minions atacan 2 veces y campeon se queda sin bloqueos " {
 	
-	test " minions atacan 2 veces y campeon se queda sin bloqueos "{
-		jinx.equiparItem(ani)
-		jinx.equiparItem(tomo)
-		m.defender(jinx)
-		m.defender(jinx)
-		assert.equals(jinx.bloqueos(),0)
-	}
-	
-	test "minion se defiende y hace daño en el tercer ataque del campeon "{
-		jinx.equiparItem(ani)
 		jinx.equiparItem(tomo)
 		m.defender(jinx)
 		m.defender(jinx)
-		m.defender(jinx)
-		assert.notEquals(jinx.puntosDeDanio(),5)
+		assert.equals(jinx.bloqueos(), 0)
 	}
-	
-	test"minion se defiende,campeon: bloqueo = 0, vidaTotal = 120, daño = 40, ataque = 32 "{
-		jinx.equiparItem(ani)
+
+	test "minion se defiende y hace daño en el tercer ataque del campeon " {
+		
 		jinx.equiparItem(tomo)
 		m.defender(jinx)
 		m.defender(jinx)
 		m.defender(jinx)
-		assert.equals(jinx.bloqueos(),0)
-		assert.equals(jinx.vidaTotal(),120)
-		assert.equals(jinx.puntosDeDanio(),40)
-		assert.equals(jinx.puntosDeAtaqueTotal(),32)
+		assert.notEquals(jinx.puntosDeDanio(), 5)
 	}
-	
-	test "desequipo tomo luego de 3 defensas de minios "{
-		jinx.equiparItem(ani)
+
+	test"minion se defiende,campeon: bloqueo = 0, vidaTotal = 120, daño = 40, ataque = 32 " {
+		
 		jinx.equiparItem(tomo)
 		m.defender(jinx)
 		m.defender(jinx)
 		m.defender(jinx)
-		jinx.desequiparItem(tomo) 
-		assert.equals(jinx.items(),[ani])
-		assert.equals(jinx.bloqueos(),1)
-		assert.equals(jinx.vidaTotal(),110)
-		assert.equals(jinx.puntosDeDanio(),70)
-		assert.equals(jinx.puntosDeAtaqueTotal(),30)
+		assert.equals(jinx.bloqueos(), 0)
+		assert.equals(jinx.vidaTotal(), 120)
+		assert.equals(jinx.puntosDeDanio(), 40)
+		assert.equals(jinx.puntosDeAtaqueTotal(), 32)
 	}
-	
-	test "desequipo tomo y anillo luego de 3 defensas de minions, muere campeon "{
-		jinx.equiparItem(ani)
+
+	test "desequipo tomo luego de 3 defensas de minios " {
+		
 		jinx.equiparItem(tomo)
 		m.defender(jinx)
 		m.defender(jinx)
 		m.defender(jinx)
 		jinx.desequiparItem(tomo)
-		jinx.desequiparItem(ani) 
-		assert.equals(jinx.items(),[])
-		assert.equals(jinx.bloqueos(),1)
-		assert.equals(jinx.vidaTotal(),50)
-		assert.equals(jinx.puntosDeDanio(),60)
-		assert.equals(jinx.puntosDeAtaqueTotal(),15)
-		assert.equals(true,jinx.muereCampeon())
-												//interpreto que si pierdo la vida del anillo que descarto
-		 											//tambien los puntos otorgados de ataque proporcionados por el anillo 
+		assert.equals(jinx.items(), [ ani ])
+		assert.equals(jinx.bloqueos(), 1)
+		assert.equals(jinx.vidaTotal(), 110)
+		assert.equals(jinx.puntosDeDanio(), 70)
+		assert.equals(jinx.puntosDeAtaqueTotal(), 30)
 	}
+
+	test "desequipo tomo y anillo luego de 3 defensas de minions, muere campeon " {
+		
+		jinx.equiparItem(tomo)
+		m.defender(jinx)
+		m.defender(jinx)
+		m.defender(jinx)
+		jinx.desequiparItem(tomo)
+		jinx.desequiparItem(ani)
+		assert.equals(jinx.items(), [])
+		assert.equals(jinx.bloqueos(), 1)
+		assert.equals(jinx.vidaTotal(), 50)
+		assert.equals(jinx.puntosDeDanio(), 60)
+		assert.equals(jinx.puntosDeAtaqueTotal(), 15)
+		assert.equals(true, jinx.muereCampeon())
+	// interpreto que si pierdo la vida del anillo que descarto
+	// tambien los puntos otorgados de ataque proporcionados por el anillo 
+	}
+
 }
+

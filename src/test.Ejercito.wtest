@@ -16,6 +16,7 @@ describe "Tests Individual Ejercito de Minions "{
 		jinx.lucharEjercito(escuadron1)
 		assert.equals(true,escuadron1.ejercitoMuerto())
 		assert.equals(true,jinx.muereCampeon())
+		assert.equals(300,escuadron1.obtenerDineroOleada(jinx))
 		
 	}
 }

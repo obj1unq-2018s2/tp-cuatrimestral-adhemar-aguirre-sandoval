@@ -11,12 +11,12 @@ class Campeon {
 	var property cantDinero = 0
 
 	method vidaBase() = vidaBase
-	
+
 	method invetario() = items
-	
-	method reducirDanio(cant){
-		if(puntosDeDanio.between(0,cant) ){
-		 puntosDeDanio= 0
+
+	method reducirDanio(cant) {
+		if (puntosDeDanio.between(0, cant)) {
+			puntosDeDanio = 0
 		} else {
 			puntosDeDanio = puntosDeDanio - cant
 		}
@@ -35,9 +35,7 @@ class Campeon {
 	}
 
 	method activarHabilidad(item) {
-		if (items.contains(item)) {
-			item.habilidadActivada(self)
-		}
+		item.habilidadActivada(self)
 	}
 
 	method equiparItem(item) {
@@ -46,10 +44,8 @@ class Campeon {
 	}
 
 	method desequiparItem(item) {
-		if (items.contains(item)) {
-			items.remove(item)
-			item.efectoDesequipar(self)
-		}
+		items.remove(item)
+		item.efectoDesequipar(self)
 	}
 
 	method vidaTotal() {
@@ -68,38 +64,45 @@ class Campeon {
 		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaqueTotal())
 		self.dineroObtenido(minion)
 	}
-	
-	method dineroObtenido(minion){
-		if(self.puntosDeAtaqueTotal() > minion.cantidad()){
+
+	method dineroObtenido(minion) {
+		if (self.puntosDeAtaqueTotal() >= minion.cantidad()) {
 			cantDinero = cantDinero + minion.cantidad()
 		} else {
 			cantDinero = cantDinero + self.puntosDeAtaqueTotal()
 		}
 	}
-	
+
+	method dineroPorOleada(minion) {
+		if (self.puntosDeAtaqueTotal() >= minion.cantidad()) {
+			return  minion.cantidad()
+		} else {
+			return self.puntosDeAtaqueTotal()
+		}
+	}
 
 	method luchar(minion) {
-		if (not self.muereCampeon() and not minion.estaMuerto()) {
-			minion.defender(self)
+		if (not minion.estaMuerto()) {
 			self.atacar(minion)
+			minion.defender(self)
 			minion.reciboDanio(minion.puntosDeDanio())
 		} else {
-			not self.muereCampeon() and minion.estaMuerto()
 			self.atacar(minion)
 		}
 	}
-	
-		method atacarEjercito(ejercito){
+
+	method atacarEjercito(ejercito) {
 		ejercito.recibeAtaque(self.puntosDeAtaqueTotal())
 	}
-	
-	method lucharEjercito(ejercito){
-		if(not self.muereCampeon() and not ejercito.ejercitoMuerto()){
+
+	method lucharEjercito(ejercito) {
+		if (not ejercito.ejercitoMuerto()) {
 			ejercito.defenderse(self)
-			self.atacarEjercito(ejercito)}	
-		else{not self.muereCampeon() and ejercito.ejercitoMuerto() self.atacarEjercito(ejercito)}
+			self.atacarEjercito(ejercito)
+		} else {
+			self.atacarEjercito(ejercito)
+		}
 	}
+
 }
-
-
 
