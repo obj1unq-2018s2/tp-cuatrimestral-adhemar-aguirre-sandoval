@@ -7,7 +7,7 @@ class Soporte inherits Campeon {
 	
 	var vinculado = null
 	
-	override method cantDinero() = 100
+//	override method cantDinero() = 100
 	// setter
 	method vincular(campeon){
 		vinculado = campeon
@@ -23,12 +23,12 @@ class Soporte inherits Campeon {
 	
 	// ataca y reduce danio al campeon vinculado
 	override method atacar(enemigo){
-		
+		super(enemigo)
 		vinculado.reducirDanio(10)
 	}
 	
 	
 	method itemsDeVinculo() = vinculado.items()
 	
-	override method invetario()=  self.itemsDeVinculo()
+	override method invetario()=  self.itemsDeVinculo() + items
 }

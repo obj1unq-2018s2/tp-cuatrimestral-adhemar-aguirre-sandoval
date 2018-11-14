@@ -103,11 +103,12 @@ class PocionDeVida {
 	}
 
 	method descontarDanio(campeon) {
-		if (campeon.puntosDeDanio() >= 50) {
-			campeon.puntosDeDanio(campeon.puntosDeDanio() - 50)
-		} else {
-			campeon.puntosDeDanio(0)
-		}
+		campeon.quitarPuntosDeDanio(50)
+//		if (campeon.puntosDeDanio() >= 50) {
+//			campeon.puntosDeDanio(campeon.puntosDeDanio() - 50)
+//		} else {
+//			campeon.puntosDeDanio(0)
+//		}
 	}
 
 }

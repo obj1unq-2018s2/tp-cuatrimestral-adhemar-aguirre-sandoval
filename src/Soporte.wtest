@@ -9,7 +9,7 @@ import Soporte.*
 describe "test del soporte"{
 	var draven = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
 	var maokai = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
-	var janna = new Soporte(vidaBase = 150,puntosDeAtaqueBase = 25, vinculado = null)
+	var janna = new Soporte(vidaBase = 150,puntosDeAtaqueBase = 25, vinculado = null, cantDinero = 100)
 	var olita = new Minions(cantidad = 100, plus = 0)
 	var po = new PocionDeVida()
 	var tomito = new TomoAmplificador()
@@ -33,7 +33,7 @@ describe "test del soporte"{
 	}
 	
 	test "maokai recibe 40 puntos de danio"{
-		assert.equals(maokai.puntosDeDanio(),40)
+		assert.equals(40,maokai.puntosDeDanio())
 	}
 	
 	test"dinero de maokai "{
@@ -41,7 +41,7 @@ describe "test del soporte"{
 	}
 	
 	 test" dinero de janna"{
-		assert.equals(janna.cantDinero(),100)
+		assert.equals(100,janna.cantDinero())
 	}
 	
 	 test " janna tiene una pocion de vida"{

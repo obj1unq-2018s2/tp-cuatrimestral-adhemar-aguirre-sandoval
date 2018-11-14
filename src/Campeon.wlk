@@ -49,7 +49,7 @@ class Campeon {
 	}
 
 	method vidaTotal() {
-		return items.map({ item => item.puntosDeVida(self) }).sum() + vidaBase
+		return self.invetario().map({ item => item.puntosDeVida(self) }).sum() + vidaBase
 	}
 
 	method puntosDeAtaqueTotal() {
@@ -61,7 +61,7 @@ class Campeon {
 	}
 
 	method atacar(minion) {
-		minion.puntosDeDanio(minion.puntosDeDanio() + self.puntosDeAtaqueTotal())
+		minion.puntosDeDanio(self.puntosDeAtaqueTotal())
 		self.dineroObtenido(minion)
 	}
 
