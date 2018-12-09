@@ -68,7 +68,9 @@ class Campeon {
 	method reducirDanio(valor) {
 		puntosDeDanio = (self.puntosDeDanio() - valor).max(0)
 }
-
+method activarHabilidad(item) {
+	item.habilidadActivada(self)
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

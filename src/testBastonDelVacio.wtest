@@ -20,7 +20,7 @@ describe "Test Baston" {
 		jinx.comprar(ani)
 		jinx.comprar(anillo2)
 		jinx.comprar(baston)
-		jinx.activarHabilidad(baston)
+		jinx. activarHabilidad(baston)
 		assert.equals(jinx.puntosDeDanio(), 0)
 		assert.equals(jinx.cantDinero(), 500)
 	}

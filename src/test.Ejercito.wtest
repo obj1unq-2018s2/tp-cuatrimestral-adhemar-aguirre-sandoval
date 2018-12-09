@@ -13,10 +13,9 @@ describe "Tests Individual Ejercito de Minions "{
 		test "Creo ejercito y luchan con el campeon"{
 		escuadron1.reclutarOleada(oleada1)
 		escuadron1.reclutarOleada(oleada2)
-		jinx.lucharEjercito(escuadron1)
-		assert.equals(true,escuadron1.ejercitoMuerto())
+		jinx.luchar(escuadron1)
+		assert.equals(true,escuadron1.estaMuerto())
 		assert.equals(true,jinx.muereCampeon())
-		
 		
 	}
 }
