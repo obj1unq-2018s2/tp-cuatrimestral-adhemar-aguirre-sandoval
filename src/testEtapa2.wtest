@@ -24,7 +24,7 @@ describe "Tests de la parte 2 del TP" {
 		assert.equals(jinx.vidaTotal(), 111.25)
 		assert.equals(jinx.puntosDeDanio(), 5)
 		assert.equals(jinx.puntosDeAtaqueTotal(), 30.25)
-		assert.equals(true, m.muereMinions())
+		assert.equals(true, m.estaMuerto() )
 	}
 
 	test"se muere el campeon tras desequiparse los items" {
@@ -33,7 +33,7 @@ describe "Tests de la parte 2 del TP" {
 		jinx.desequiparItem(tomo)
 		jinx.equiparItem(tomo)
 		jinx.desequiparItem(tomo)
-		assert.equals(true, m.muereMinions())
+		assert.equals(true, m.estaMuerto())
 		assert.equals(true, jinx.muereCampeon())
 	}
 

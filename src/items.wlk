@@ -1,24 +1,33 @@
 import Campeon.*
 import Minions.*
 
-class AnilloDeDoran {
+class Item {
+	method puntosDeVida(campeon) = 0
 
-	method precio() = 300
-
-	method puntosDeVida(campeon) = 60
-
-	method puntosDeAtaque(campeon) = 15
+	method puntosDeAtaque(campeon) = 0
 
 	method efectoEquipar(campeon) {
-		campeon.puntosDeDanio(campeon.puntosDeDanio() + 5)
 	}
 
 	method efectoDesequipar(campeon) {
-		if (campeon.puntosDeDanio() - 10 < 0) {
-			campeon.puntosDeDanio(0)
-		} else {
-			campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
-		}
+	}
+	method precio() = 0
+}
+
+class AnilloDeDoran inherits Item {
+
+	override method precio() = 300
+
+	override method puntosDeVida(campeon) = 60
+
+	override method puntosDeAtaque(campeon) = 15
+
+	override method efectoEquipar(campeon) {
+		campeon.puntosDeDanio(campeon.puntosDeDanio() + 5)
+	}
+
+	override method efectoDesequipar(campeon) {
+		campeon.reducirDanio(10)
 	}
 
 }
@@ -103,13 +112,10 @@ class PocionDeVida {
 	}
 
 	method descontarDanio(campeon) {
-		campeon.quitarPuntosDeDanio(50)
-//		if (campeon.puntosDeDanio() >= 50) {
-//			campeon.puntosDeDanio(campeon.puntosDeDanio() - 50)
-//		} else {
-//			campeon.puntosDeDanio(0)
-//		}
-	}
+		campeon.reducirDanio(50)
+}
+	
+	
 
 }
 
