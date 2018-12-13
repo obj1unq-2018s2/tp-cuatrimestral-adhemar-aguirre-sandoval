@@ -33,5 +33,5 @@ class Soporte inherits Campeon {
 	
 	method itemsDeVinculo() = vinculado.items()
 	
-	override method inventario() =  self.itemsDeVinculo() + items
+	override method inventario() = super() +  self.itemsDeVinculo()
 }
