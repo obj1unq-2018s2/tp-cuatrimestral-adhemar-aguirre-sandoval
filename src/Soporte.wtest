@@ -25,7 +25,7 @@ describe "test del soporte"{
 		janna.comprar(po)
 	}
 	test "oleada esta muerta"{
-		assert.that(olita.muereMinions())
+		assert.that(olita.estaMuerto())
 	}
 	
 	test "draven recibe 90 puntos de danio"{
