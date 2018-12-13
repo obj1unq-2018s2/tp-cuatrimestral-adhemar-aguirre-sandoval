@@ -11,7 +11,7 @@ class Campeon {
 	var property bloqueos = 0
 	var property cantDinero = 0
 
-	method invetario() = items
+	method inventario() = items
 
 	method vidaBase() = vidaBase
 

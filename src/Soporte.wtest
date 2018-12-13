@@ -45,11 +45,11 @@ describe "test del soporte"{
 	}
 	
 	 test " janna tiene una pocion de vida"{
-		assert.equals(janna.invetario().contains(po))
+		assert.that(janna.inventario().contains(po))
 	}
 	
 	test "janna tiene un tomo amplificador"{
-      assert.equals(janna.invetario().contains(tomito))
+      assert.that(janna.inventario().contains(tomito))
 		
 	}
 }
