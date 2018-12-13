@@ -47,7 +47,7 @@ class Campeon {
 	}
 
 	method dineroObtenido(minion) {
-		cantDinero = minion.dineroQueOtorga(self)
+		cantDinero = cantDinero + minion.dineroQueOtorga(self)
 	}
 
 	method atacar(minion) {
