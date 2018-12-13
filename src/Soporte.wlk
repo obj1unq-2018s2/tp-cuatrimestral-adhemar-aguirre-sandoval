@@ -19,7 +19,10 @@ class Soporte inherits Campeon {
 	// saca el vinculo actual
 	method desvincular(campeon) { vinculado = null}
 	
+	// metodos que faltaban 
+	override method vidaTotal() = vidaBase + self.inventario().sum({ item => item.puntosDeVida(self)})
 	
+	override method puntosDeAtaqueTotal() = puntosDeAtaqueBase + self.inventario().sum({ item => item.puntosDeAtaque(self)})
 	
 	// ataca y reduce danio al campeon vinculado
 	override method atacar(enemigo){
@@ -30,5 +33,5 @@ class Soporte inherits Campeon {
 	
 	method itemsDeVinculo() = vinculado.items()
 	
-	override method invetario() =  self.itemsDeVinculo() + items
+	override method inventario() =  self.itemsDeVinculo() + items
 }
