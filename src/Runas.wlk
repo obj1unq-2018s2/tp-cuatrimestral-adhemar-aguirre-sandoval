@@ -50,16 +50,18 @@ class RunasDelCazador inherits Runa {
 	override method bonificacionPuntosDeVida(campeon) = 5
 
 	override method bonificacionPuntosDeAtaque(campeon) {
-		if (campeon.tengoItemQueAportaAtque()) {
-			return 30
-		} else return 0
+		return if (campeon.tengoItemQueAportaAtque()) {
+			30
+		} else { 0
 	}
 
+
+}
 	override method puntosDeVida(campeon) = self.bonificacionPuntosDeVida(campeon)
 
 }
 
-class RunaHibrida inherits Runa {
+class RunaHibrida inherits RunasDelCazador {
 
 	override method bonificacionPuntosDeVida(campeon) = { if (campeon.puntosDeDanio() > campeon.vidaTotal() * 0.5) {
 			return campeon.vidaBase() * 0.05
@@ -81,12 +83,12 @@ class RunaTerra {
 class Piltover inherits RunaTerra {
 
 	override method plusVida(runa, campeon) = { if (runa.bonificacionPuntosDeVida(campeon) > 10) {
-			20
+			return 20
 		}
 	}
 
 	override method plusAtaque(runa, campeon) = { if (runa.bonificacionPuntosDeVida(campeon) > 10) {
-			10
+			return 10
 		}
 	}
 
@@ -98,9 +100,10 @@ class Noxus inherits RunaTerra {
 		return 10
 	}
 
-	override method plusAtaque(runa, campeon) = { if (runa.bonificacionPuntosDeAtaque(campeon) == 0) {
+	override method plusAtaque(runa, campeon) = {
+       if (runa.bonificacionPuntosDeAtaque(campeon) == 0) { 
 			15
-		}
+		} 
 	}
 
 }

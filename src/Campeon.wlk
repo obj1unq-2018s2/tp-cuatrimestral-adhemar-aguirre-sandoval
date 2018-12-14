@@ -39,11 +39,10 @@ class Campeon {
 	}
 
 	method vidaTotal() {
-		return 
-		self.inventario().map({ item => item.puntosDeVida(self) }).sum() + vidaBase 	}
+		return self.inventario().map({ item => item.puntosDeVida(self) }).sum() + vidaBase 	}
 
 	method puntosDeAtaqueTotal() {
-		return items.map({ item => item.puntosDeAtaque(self) }).sum() + puntosDeAtaqueBase
+		return self.inventario().map({ item => item.puntosDeAtaque(self) }).sum() + puntosDeAtaqueBase
 	}
 
 	method muereCampeon() {
@@ -78,7 +77,7 @@ class Campeon {
 	}
 
 	method tengoItemQueAportaAtque() {
-		items.any({ item => item.puntosDeAtaque(self) > 0})
+		return items.any({ item => item.puntosDeAtaque(self) > 0})
 	}
 
 	method equiparRuna(runa) {
@@ -87,8 +86,8 @@ class Campeon {
 		
 	}
 
-	method desequiparRuna() {
-		runas.clearAll()
+	method desequiparRuna(runa) {
+		runas.remove(runa)
 	}
 
 	method tengoRuna() {
