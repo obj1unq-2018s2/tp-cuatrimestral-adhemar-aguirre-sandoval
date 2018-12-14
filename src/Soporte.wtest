@@ -10,7 +10,7 @@ describe "test del soporte"{
 	var draven = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
 	var maokai = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
 	var janna = new Soporte(vidaBase = 150,puntosDeAtaqueBase = 25, vinculado = null, cantDinero = 100)
-	var olita = new Minions(cantidad = 100, plus = 0)
+	var olita = new Minions(cantidadMinions = 100, plus = 0)
 	var po = new PocionDeVida()
 	var tomito = new TomoAmplificador()
 	fixture {

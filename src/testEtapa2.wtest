@@ -4,7 +4,7 @@ import Minions.*
 
 describe "Tests de la parte 2 del TP" {
 
-	var m = new Minions(cantidad = 10, plus = 25)
+	var m = new Minions(cantidadMinions = 10, plus = 25)
 	var jinx = new Campeon(vidaBase = 50, puntosDeAtaqueBase = 15)
 	var ani = new AnilloDeDoran()
 	var tomo = new TomoAmplificador()
