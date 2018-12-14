@@ -1,6 +1,7 @@
 import Minions.*
 import items.*
 import ejercitoMinion.*
+import Runas.*
 
 class Campeon {
 
@@ -12,7 +13,9 @@ class Campeon {
 	var property cantDinero = 0
 	const runas = []
 
-	method inventario() = items
+
+	
+	method inventario() = items + runas
 
 	method vidaBase() = vidaBase
 
@@ -36,8 +39,8 @@ class Campeon {
 	}
 
 	method vidaTotal() {
-		return items.map({ item => item.puntosDeVida(self) }).sum() + vidaBase
-	}
+		return 
+		self.inventario().map({ item => item.puntosDeVida(self) }).sum() + vidaBase 	}
 
 	method puntosDeAtaqueTotal() {
 		return items.map({ item => item.puntosDeAtaque(self) }).sum() + puntosDeAtaqueBase
@@ -75,12 +78,13 @@ class Campeon {
 	}
 
 	method tengoItemQueAportaAtque() {
-		items.any({ item => item.puntosDeAtaque() > 0})
+		items.any({ item => item.puntosDeAtaque(self) > 0})
 	}
 
 	method equiparRuna(runa) {
-		runa.efectoEquipar(self)
 		runas.add(runa)
+		runa.efectoEquipar(self)
+		
 	}
 
 	method desequiparRuna() {

@@ -1,0 +1,33 @@
+import Runas.*
+import Minions.*
+import Campeon.*
+import items.*
+
+
+
+describe "Runas"{
+	
+	var noxus= new Noxus() 
+	var ruti = new RunasDelCazador( ciudad = noxus)
+	var draven = new Campeon(vidaBase = 150,puntosDeAtaqueBase = 25, cantDinero = 1000)
+	var ani = new AnilloDeDoran()
+	var tomo = new TomoAmplificador()
+	
+	fixture {
+		draven.equiparItem(ani)
+		draven.equiparItem(tomo)
+		draven.equiparRuna(ruti)
+		}
+		
+	test"runas dan vida"{
+		assert.equals(noxus, ruti.ciudad())
+		assert.equals([ani, tomo, ruti], draven.inventario())
+		assert.equals(216.25, draven.vidaTotal())
+		
+	}
+}
+	
+
+	
+	
+	

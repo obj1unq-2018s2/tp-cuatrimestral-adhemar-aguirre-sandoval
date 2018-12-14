@@ -14,21 +14,20 @@ class Runa {
 		return self.ciudad().plusVida(ciudad, campeon)
 	}
 
-	method puntosDeVida(campeon) = 0
+	method puntosDeVida(campeon) = self.bonificacionPuntosDeVida(campeon) + self.plusVidaRuna(campeon)
 
-	method puntosDeAtaque(campeon) = 0
+	method puntosDeAtaque(campeon) = self.bonificacionPuntosDeAtaque(campeon) + self.plusAtaqueRuna(campeon)
+			
 
 	method efectoEquipar(campeon) {
 		if (not campeon.tengoRuna()) {
-			self.bonificacionPuntosDeVida(campeon) + self.plusVidaRuna(campeon)
-			self.bonificacionPuntosDeAtaque(campeon) + self.plusAtaqueRuna(campeon)
 			campeon.equiparRuna(self)
 		}
 	}
 
 	method bonificacionPuntosDeVida(campeon)
 
-	method bonificacionPuntosDeAtaque(campeon)
+	method bonificacionPuntosDeAtaque(campeon){ return 0}
 
 	method efectoDesequipar(campeon) = campeon.desequiparRuna()
 
