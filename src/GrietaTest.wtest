@@ -1,0 +1,21 @@
+import Grieta.*
+import Campeon.*
+import Minions.*
+import Runas.*
+
+describe "batalla en la grieta del invocador" {
+    var m = new Minions(cantidadMinions = 10, plus = 25)
+	var jinx = new Campeon(vidaBase = 50, puntosDeAtaqueBase = 15) 
+	var ru = new  RunasDelColoso()
+	
+	fixture {
+		jinx.equiparRuna(ru)
+		grietaDelInvocador.agregar(jinx)
+	}
+	
+	test "campeon tiene runa"{
+		assert.equals([jinx],grietaDelInvocador.tienenRunas() )
+	}
+	
+
+}
